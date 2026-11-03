@@ -5,3 +5,5 @@ __pycache__/
 .pytest_cache/
 .env
 models/
+benchmarks_local.json
+metrics_*.json

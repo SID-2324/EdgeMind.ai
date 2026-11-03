@@ -30,6 +30,11 @@ class TestWorkflow(unittest.TestCase):
         self.assertEqual(state['status'], 'DEFERRED')
         self.assertEqual(state['tool_result']['status'], 'not_run')
 
+    def test_classification_routes_to_mock_npu(self):
+        state = make_graph().invoke(inputs(task_type='classification'))
+        self.assertEqual(state['decision']['device'], 'NPU')
+        self.assertEqual(state['status'], 'SIMULATED')
+
     def test_complex_cloud_allowed_uses_mock_cloud(self):
         state = make_graph().invoke(inputs(privacy_mode='cloud_allowed', complexity='complex'))
         self.assertEqual(state['decision']['provider'], 'cloud')

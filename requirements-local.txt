@@ -1,0 +1,4 @@
+-r requirements.txt
+openvino>=2025.1
+openvino-genai>=2025.1
+psutil>=5.9

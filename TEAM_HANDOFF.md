@@ -1,64 +1,34 @@
-# Integration contracts for your three-person EdgeMind team
+# EdgeMind — Stage 10 Team Handoff
 
-## Layer 1 developer — Terminal now, FastAPI/React later
+## Architectural boundary
 
-Call the Python function `edgemind.service.run_task(...)`. Example:
+`Browser → POST /api/tasks → edgemind.api → edgemind.service.run_task → LangGraph → planner / RAG / router / coordinator / verifier / recovery → JSON → browser`
 
-```python
-from edgemind.service import run_task
+**Layer 2 APIs are unchanged.** The web layer collects user inputs, validates them, maps them into the existing `run_task` contract, and formats the returned state into an API response. CLI continues to work.
 
-result = run_task(
-    query='Summarize my project',
-    privacy_mode='local_only',
-    network='online',
-    complexity='simple',
-)
-print(result['status'])
-print(result['trace'])
-```
+## What teammates can work on independently
 
-`run_task` currently executes **only simulated** model responses.
-Do not label `SIMULATED` as a correct AI answer.
+- **Frontend:** `edgemind/web/*`. Safe DOM output is produced using `textContent`, never injected response HTML. Local static files only.
+- **Backend/UI:** `edgemind/api.py`. Add web-safe endpoints here, do not move Layer 2 decision logic into HTTP handlers.
+- **Model infrastructure:** `edgemind/adapters/openvino_qwen.py`, Stage 9 benchmark module. This stage does not introduce new models.
+- **Testing:** `tests/test_stage10_web_api.py`; preserve mock mode and assert no private user inputs are written or sent to cloud endpoints.
 
-Expected input: `query` string, `privacy_mode` (`local_only` or `cloud_allowed`),
-`network` (`online` or `offline`), `complexity` (`simple` or `complex`),
-and optional `documents` (list of `{source_id, text}`).
+## Contract considerations
 
-Layer 1 should get meaningful user permission before allowing cloud processing.
-Do not put uploaded private documents into logs or publicly reachable services.
+- Default `execution_mode = mock`; `is_real_inference=true` only if real mode and verifier returned `COMPLETED`.
+- Real mode requires explicit environment configuration, `local_only` privacy, and text/code task type.
+- Model path and benchmark file path come **only from server environment**, never user JSON.
+- One real inference request at a time, with HTTP 409 for another simultaneous request.
+- Browser task text is not persisted; server memory is process-scoped. A production deployment would need consent, authentication, resource isolation, logging policies, and stronger tool sandboxing.
+- The frontend's cloud-eligible mock setting is a **demonstration only**; no real cloud API adapter exists.
 
-## Layer 3 developer — GPU/NPU/Meta inference and retrieval stores
+## API example
 
-Provide a capability registry compatible with `ModelCapability` from
-`edgemind.contracts`:
+`POST /api/tasks` with JSON `{"query":"Explain an NPU","privacy_mode":"local_only","execution_mode":"mock"}` responds with fields `status`, `execution_mode`, `is_real_inference`, `result`, `error`, `model`, `plan`, `executed_steps`, `evidence`, `verification`, `performance`, `trace`, `notice`.
 
-```python
-{
-    'model_id': 'qwen-1.5b-openvino',
-    'provider': 'local',
-    'device': 'GPU',
-    'complexities': ['simple'],
-    'available': True,
-}
-```
+## Ready-for-Stage-11 definition
 
-This is a declared capability, **not a measured guarantee**. Implement the
-real inference adapter in a later milestone; maintain a typed response with
-`status`, `content`, and `error`. The Layer 2 Tool Coordinator currently returns
-mock data and **must be explicitly changed** to call the real adapter.
-
-NPU availability alone does not mean it can run an LLM. Register only
-models that were actually compiled and tested on the selected device.
-
-## Layer 2 developer — You
-
-Own `edgemind/graph.py`, `contracts.py`, `state.py`, `service.py`, and
-all six `edgemind/modules/*.py` implementations.
-
-Development order: contracts → router → RAG → coordinator → planner →
-verification → recovery. Keep tests passing after every change.
-
-## Collaboration rule
-
-Freeze interfaces for the next milestone. If a field changes, update
-`contracts.py`, `TEAM_HANDOFF.md`, and relevant tests together.
+- All existing tests pass on Windows.
+- Mock request works through the browser.
+- Real local Qwen request works through browser with configured `EDGEMIND_MODEL_PATH`.
+- No public network binding; privacy policy enforced; benchmark-aware `auto` tested only with matching observations.

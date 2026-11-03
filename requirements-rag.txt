@@ -1,0 +1,4 @@
+# Optional Stage 5B: local CPU/ONNX embeddings + cross-encoder reranking.
+# Core LangGraph tests do not require these dependencies unless hybrid mode is used.
+-r requirements.txt
+fastembed>=0.7,<1.0

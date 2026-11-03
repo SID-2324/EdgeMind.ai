@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <title>EdgeMind · Local AI Orchestrator</title>
+  <link rel="stylesheet" href="/assets/style.css" />
+  <script defer src="/assets/app.js"></script>
+</head>
+<body>
+  <div class="shell">
+    <header class="header">
+      <a class="brand" href="/" aria-label="EdgeMind home">
+        <span class="brand-mark">E</span><span>Edge<span class="brand-light">Mind</span></span>
+      </a>
+      <div class="header-right"><span class="status-pulse"></span><span id="serverStatus">Checking local server…</span><span class="header-chip">STAGE 10</span></div>
+    </header>
+    <main>
+      <div class="intro">
+        <div class="eyebrow">LOCAL-FIRST · MODEL-AWARE · POLICY-SAFE</div>
+        <h1>One task. <span class="gradient">The right execution path.</span></h1>
+        <p>Compose a task, let the orchestrator plan and route it, then inspect exactly what happened. Mock mode is the default; real local Qwen is opt-in.</p>
+      </div>
+      <div class="layout">
+        <section class="panel compose" aria-labelledby="composeTitle">
+          <div class="panel-top"><div><span class="section-index">01 / INPUT</span><h2 id="composeTitle">New task</h2></div><span id="modeBadge" class="mode-badge">MOCK MODE</span></div>
+          <form id="taskForm">
+            <label for="query">What should EdgeMind do?</label>
+            <textarea id="query" rows="5" maxlength="2000" placeholder="Explain what an NPU does in two sentences…" required>Explain what an NPU does in two sentences.</textarea>
+            <div class="field-grid">
+              <div class="field"><label for="executionMode">Execution</label><select id="executionMode"><option value="mock">Mock / safe demo</option><option value="local_qwen">Real local Qwen</option></select></div>
+              <div class="field"><label for="taskType">Task type</label><select id="taskType"><option value="text">Text generation</option><option value="code">Code generation</option><option value="classification">Classification (mock)</option></select></div>
+              <div class="field"><label for="privacyMode">Privacy policy</label><select id="privacyMode"><option value="local_only">Local only</option><option value="cloud_allowed">Cloud eligible (mock)</option></select></div>
+              <div class="field"><label for="strategy">Routing strategy</label><select id="strategy"><option value="balanced">Balanced</option><option value="fastest">Fastest</option><option value="cheapest">Cheapest</option><option value="highest_quality">Highest quality</option></select></div>
+            </div>
+            <details class="extras"><summary>Advanced options <span>Hardware · RAG · documents</span></summary>
+              <div class="field-grid advanced-grid">
+                <div class="field"><label for="localDevice">Local device</label><select id="localDevice"><option value="GPU">Intel Arc / GPU</option><option value="CPU">CPU</option><option value="auto">Auto · measured benchmarks</option></select></div>
+                <div class="field"><label for="maxTokens">Maximum new tokens</label><input id="maxTokens" type="number" min="1" max="256" value="64" /></div>
+                <div class="field"><label for="ragMode">Retrieval</label><select id="ragMode"><option value="bm25">BM25 (no download)</option><option value="hybrid">Hybrid embeddings + BM25</option></select></div>
+                <div class="field"><label for="ragTopK">Retrieved passages</label><input id="ragTopK" type="number" min="1" max="8" value="3" /></div>
+                <div class="field"><label for="complexity">Complexity</label><select id="complexity"><option value="simple">Simple</option><option value="complex">Complex</option></select></div>
+                <div class="field"><label for="network">Network state (routing)</label><select id="network"><option value="online">Online</option><option value="offline">Offline</option></select></div>
+              </div>
+              <div class="check-line"><input id="rerank" type="checkbox" /><label for="rerank">Enable cross-encoder reranking (hybrid mode)</label></div>
+              <div class="doc-title"><label for="documentText">Optional reference document</label><button class="text-button" type="button" id="demoDocs">Insert demo source</button></div>
+              <textarea id="documentText" rows="4" maxlength="12000" placeholder="Paste source text here. It stays on this local server."></textarea>
+              <p class="microcopy">No document uploads or persistent task history. A supplied document is passed only to this request.</p>
+            </details>
+            <div id="formNote" class="form-note" role="status">Generation is simulated until you explicitly choose real local mode.</div>
+            <div class="submit-row"><button id="runButton" class="primary-button" type="submit"><span id="runLabel">Run task</span><span aria-hidden="true">↗</span></button><span id="duration" class="duration"></span></div>
+          </form>
+        </section>
+        <section class="panel results" aria-labelledby="resultTitle">
+          <div class="panel-top"><div><span class="section-index">02 / OUTPUT</span><h2 id="resultTitle">Execution result</h2></div><span id="resultStatus" class="result-status idle">WAITING</span></div>
+          <div id="emptyState" class="empty-state"><div class="empty-icon">⌘</div><h3>Nothing executed yet</h3><p>Your result, execution plan, and routing decision will appear here.</p></div>
+          <div id="resultContent" class="result-content hidden" aria-live="polite">
+            <p id="resultNotice" class="result-notice"></p>
+            <div class="output-title">MODEL RESPONSE <button type="button" class="text-button" id="copyOutput">Copy</button></div>
+            <pre id="resultText" class="result-text"></pre>
+            <div class="metrics" id="metrics">
+              <div class="metric"><div class="metric-label">MODEL</div><div class="metric-value" id="metricModel">—</div></div>
+              <div class="metric"><div class="metric-label">DEVICE</div><div class="metric-value" id="metricDevice">—</div></div>
+              <div class="metric"><div class="metric-label">WORKFLOW</div><div class="metric-value" id="metricTime">—</div></div>
+            </div>
+            <div class="tab-row" role="tablist" aria-label="Result detail views"><button type="button" role="tab" aria-selected="true" data-tab="plan" class="tab active">Plan</button><button type="button" role="tab" aria-selected="false" data-tab="trace" class="tab">Trace</button><button type="button" role="tab" aria-selected="false" data-tab="details" class="tab">Details</button></div>
+            <div id="tabPanel" role="tabpanel" class="tab-panel"></div>
+          </div>
+          <div id="errorMessage" class="error hidden" role="alert"></div>
+        </section>
+      </div>
+    </main>
+    <footer><span>EdgeMind · Local orchestration prototype</span><span>Mock does not execute AI · Real mode never calls cloud models · Generated code is not run</span></footer>
+  </div>
+</body>
+</html>
