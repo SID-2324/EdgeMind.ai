@@ -14,13 +14,13 @@
       <a class="brand" href="/" aria-label="EdgeMind home">
         <span class="brand-mark">E</span><span>Edge<span class="brand-light">Mind</span></span>
       </a>
-      <div class="header-right"><span class="status-pulse"></span><span id="serverStatus">Checking local server…</span><span class="header-chip">STAGE 10</span></div>
+      <div class="header-right"><span class="status-pulse"></span><span id="serverStatus">Checking local server…</span><span class="header-chip">STAGE 11 · Built with Llama</span></div>
     </header>
     <main>
       <div class="intro">
         <div class="eyebrow">LOCAL-FIRST · MODEL-AWARE · POLICY-SAFE</div>
         <h1>One task. <span class="gradient">The right execution path.</span></h1>
-        <p>Compose a task, let the orchestrator plan and route it, then inspect exactly what happened. Mock mode is the default; real local Qwen is opt-in.</p>
+        <p>Built with Llama. Run Meta Llama 3.2 1B or Qwen 2.5 1.5B locally with OpenVINO. Mock mode is the default; real CPU/GPU inference is opt-in.</p>
       </div>
       <div class="layout">
         <section class="panel compose" aria-labelledby="composeTitle">
@@ -29,7 +29,8 @@
             <label for="query">What should EdgeMind do?</label>
             <textarea id="query" rows="5" maxlength="2000" placeholder="Explain what an NPU does in two sentences…" required>Explain what an NPU does in two sentences.</textarea>
             <div class="field-grid">
-              <div class="field"><label for="executionMode">Execution</label><select id="executionMode"><option value="mock">Mock / safe demo</option><option value="local_qwen">Real local Qwen</option></select></div>
+              <div class="field"><label for="executionMode">Execution</label><select id="executionMode"><option value="mock">Mock / safe demo</option><option value="local_qwen">Real local OpenVINO</option></select></div>
+              <div class="field"><label for="localModel">Local model (real mode)</label><select id="localModel"><option value="local_llama">Meta Llama 3.2 1B</option><option value="local_qwen">Qwen 2.5 1.5B</option></select></div>
               <div class="field"><label for="taskType">Task type</label><select id="taskType"><option value="text">Text generation</option><option value="code">Code generation</option><option value="classification">Classification (mock)</option></select></div>
               <div class="field"><label for="privacyMode">Privacy policy</label><select id="privacyMode"><option value="local_only">Local only</option><option value="cloud_allowed">Cloud eligible (mock)</option></select></div>
               <div class="field"><label for="strategy">Routing strategy</label><select id="strategy"><option value="balanced">Balanced</option><option value="fastest">Fastest</option><option value="cheapest">Cheapest</option><option value="highest_quality">Highest quality</option></select></div>
@@ -71,7 +72,7 @@
         </section>
       </div>
     </main>
-    <footer><span>EdgeMind · Local orchestration prototype</span><span>Mock does not execute AI · Real mode never calls cloud models · Generated code is not run</span></footer>
+    <footer><span>Built with Llama · Meta Llama 3.2 · OpenVINO conversion by llmware · <a href="/licenses/llama">Llama 3.2 license</a> · <a href="/licenses/llama-use-policy">Acceptable use</a></span><span>Cloud inference is not implemented · Generated code is not run</span></footer>
   </div>
 </body>
 </html>

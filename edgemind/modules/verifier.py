@@ -4,6 +4,7 @@ These checks are structural only; they do NOT validate factual correctness.
 Do not confuse SIMULATED with a production-ready success signal.
 """
 from ..state import EdgeState
+from ..local_models import REAL_MODES, for_mode
 
 _PRIMARY = frozenset({'generate_text', 'generate_code', 'classify_input'})
 
@@ -46,12 +47,12 @@ def verify(state: EdgeState) -> dict:
         check('nonempty_response', isinstance(content, str) and bool(content.strip()))
         mode = state.get('execution_mode', 'mock')
         check('mode_matches_status', (mode == 'mock' and status == 'simulated') or
-              (mode == 'local_qwen' and status == 'completed'))
-        if mode == 'local_qwen':
+              (mode in REAL_MODES and status == 'completed'))
+        if mode in REAL_MODES:
             check('real_adapter_allowlisted',
                   selected.get('provider') == 'local' and
                   selected.get('device') in ('CPU', 'GPU') and
-                  selected.get('model_id') == 'openvino-qwen2.5-1.5b-instruct-int4')
+                  selected.get('model_id') == for_mode(mode).model_id)
         # This marker is a test-only envelope proving the mock did not silently
         # masquerade as real inference. It is not an authenticity guarantee.
         if mode == 'mock':

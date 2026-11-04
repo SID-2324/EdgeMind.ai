@@ -18,13 +18,14 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 from starlette.concurrency import run_in_threadpool
 
 from .service import run_task
+from .local_models import REAL_MODES, MODELS, LLAMA, for_mode
 
 WEB_ROOT = Path(__file__).resolve().parent / 'web'
 REAL_LOCK = threading.Lock()
 
 app = FastAPI(
-    title='EdgeMind Local API', version='0.10.0',
-    description='Local-first orchestration demo. Mock by default; real Qwen opt-in. No cloud execution.',
+    title='EdgeMind Local API', version='0.11.0',
+    description='Local-first orchestration demo. Mock by default; local Llama/Qwen opt-in. No cloud execution.',
 )
 app.mount('/assets', StaticFiles(directory=str(WEB_ROOT)), name='assets')
 
@@ -39,7 +40,7 @@ class TaskRequest(BaseModel):
     """The browser deliberately offers a narrow, allowlisted subset of Layer 2."""
     model_config = ConfigDict(extra='forbid', str_strip_whitespace=True)
     query: str = Field(min_length=1, max_length=2000)
-    execution_mode: Literal['mock', 'local_qwen'] = 'mock'
+    execution_mode: Literal['mock', 'local_qwen', 'local_llama'] = 'mock'
     task_type: Literal['text', 'code', 'classification'] = 'text'
     privacy_mode: Literal['local_only', 'cloud_allowed'] = 'local_only'
     network: Literal['online', 'offline'] = 'online'
@@ -60,11 +61,11 @@ class TaskRequest(BaseModel):
             raise ValueError('Combined document text exceeds 36,000 characters')
         if self.rerank and self.rag_mode != 'hybrid':
             raise ValueError('Reranking requires hybrid retrieval')
-        if self.execution_mode == 'local_qwen':
+        if self.execution_mode in REAL_MODES:
             if self.privacy_mode != 'local_only':
                 raise ValueError('Real local execution requires local_only privacy')
             if self.task_type not in ('text', 'code'):
-                raise ValueError('Real Qwen does not support the classification adapter')
+                raise ValueError('Real local models do not support the classification adapter')
         return self
 
 
@@ -72,12 +73,14 @@ def real_enabled() -> bool:
     return os.getenv('EDGEMIND_ENABLE_REAL_LOCAL', '0') == '1'
 
 
-def real_model_path() -> str:
-    return os.getenv('EDGEMIND_MODEL_PATH', 'models/qwen-1.5b')
+def real_model_path(mode='local_qwen') -> str:
+    variable = 'EDGEMIND_LLAMA_MODEL_PATH' if mode == LLAMA.mode else 'EDGEMIND_MODEL_PATH'
+    return os.getenv(variable, for_mode(mode).directory)
 
 
-def benchmark_path() -> str:
-    return os.getenv('EDGEMIND_BENCHMARK_FILE', 'benchmarks_local.json')
+def benchmark_path(mode='local_qwen') -> str:
+    variable = 'EDGEMIND_LLAMA_BENCHMARK_FILE' if mode == LLAMA.mode else 'EDGEMIND_BENCHMARK_FILE'
+    return os.getenv(variable, for_mode(mode).benchmark_file)
 
 
 @app.get('/', include_in_schema=False)
@@ -85,12 +88,28 @@ def index():
     return FileResponse(WEB_ROOT / 'index.html')
 
 
+@app.get('/licenses/llama', include_in_schema=False)
+def llama_license():
+    return FileResponse(WEB_ROOT.parents[1] / 'LICENSE-Llama-3.2.txt', media_type='text/plain')
+
+
+@app.get('/licenses/llama-use-policy', include_in_schema=False)
+def llama_use_policy():
+    return FileResponse(WEB_ROOT.parents[1] / 'LLAMA_ACCEPTABLE_USE_POLICY.md', media_type='text/plain')
+
+
 @app.get('/api/health')
 def health():
     """No hardware probe or model load; does not reveal filesystem paths."""
     return {
-        'status': 'ok', 'app': 'EdgeMind', 'stage': 10,
+        'status': 'ok', 'app': 'EdgeMind', 'stage': 11,
         'default_mode': 'mock',
+        'default_demo_model': 'llama',
+        'local_models': [{'key': model.key, 'label': model.label, 'execution_mode': model.mode,
+                          'model_id': model.model_id,
+                          'directory_exists': Path(real_model_path(model.mode)).is_dir(),
+                          'benchmark_exists': Path(benchmark_path(model.mode)).is_file()}
+                         for model in MODELS],
         'real_local_enabled': real_enabled(),
         'model_directory_exists': Path(real_model_path()).is_dir(),
         'benchmark_file_exists': Path(benchmark_path()).is_file(),
@@ -101,7 +120,7 @@ def health():
 
 def _run_task_sync(payload: TaskRequest):
     """Run the synchronous LangGraph workflow in a thread, not on the event loop."""
-    is_real = payload.execution_mode == 'local_qwen'
+    is_real = payload.execution_mode in REAL_MODES
     if is_real and not REAL_LOCK.acquire(blocking=False):
         raise RuntimeError('REAL_BUSY')
     try:
@@ -120,20 +139,28 @@ def _run_task_sync(payload: TaskRequest):
                 'enable_reranker': payload.rerank,
                 'candidate_k': 10,
             },
-            local_model_path=real_model_path() if is_real else None,
+            local_model_path=real_model_path(payload.execution_mode) if is_real else None,
             local_device=payload.local_device,
-            benchmark_file=benchmark_path() if is_real else None,
+            benchmark_file=benchmark_path(payload.execution_mode) if is_real else None,
             max_new_tokens=payload.max_new_tokens,
             profile_local=is_real,
         )
         decision = result.get('decision') or {}
         verification = result.get('verification') or {}
         outcome = result.get('tool_result') or {}
+        trace = result.get('trace') or []
+        if is_real and outcome.get('status') == 'failed':
+            # Adapter exceptions are untrusted diagnostics and can contain paths,
+            # prompts or credentials. They also propagate into verifier/trace.
+            safe_error = 'Local inference failed. Check the configured model and local runtime.'
+            outcome = {**outcome, 'error': safe_error}
+            verification = {**verification, 'explanation': safe_error}
+            trace = ['Local inference failed; adapter diagnostics omitted for privacy.']
         # Explicitly distinguish real generation from mock mode in *every* response.
         return {
             'status': result.get('status', 'UNKNOWN'),
             'execution_mode': payload.execution_mode,
-            'is_real_inference': bool(payload.execution_mode == 'local_qwen'
+            'is_real_inference': bool(is_real
                                       and verification.get('status') == 'COMPLETED'),
             'result': outcome.get('content', ''),
             'error': outcome.get('error'),
@@ -158,9 +185,10 @@ def _run_task_sync(payload: TaskRequest):
             'performance': result.get('performance') or {},
             'rag_diagnostics': result.get('rag_diagnostics') or {},
             'benchmark_diagnostics': result.get('benchmark_diagnostics'),
-            'trace': (result.get('trace') or [])[:80],
+            'trace': trace[:80],
             'notice': ('Real local inference; checks verify result structure, not factual accuracy.'
-                       if is_real else
+                       if is_real and verification.get('status') == 'COMPLETED' else
+                       'Real local inference requested; no verified result was produced.' if is_real else
                        'SIMULATED generation. Model names, quality and latency are not measured.'),
         }
     finally:
@@ -170,11 +198,11 @@ def _run_task_sync(payload: TaskRequest):
 
 @app.post('/api/tasks')
 async def execute_task(payload: TaskRequest):
-    if payload.execution_mode == 'local_qwen':
+    if payload.execution_mode in REAL_MODES:
         if not real_enabled():
             raise HTTPException(status_code=403, detail='Real local mode is disabled. Set EDGEMIND_ENABLE_REAL_LOCAL=1 on the server.')
-        if not Path(real_model_path()).is_dir():
-            raise HTTPException(status_code=409, detail='Local Qwen model folder not found. Configure EDGEMIND_MODEL_PATH.')
+        if not Path(real_model_path(payload.execution_mode)).is_dir():
+            raise HTTPException(status_code=409, detail='Selected local model folder not found. Configure its server model path.')
     try:
         return await run_in_threadpool(_run_task_sync, payload)
     except RuntimeError as exc:

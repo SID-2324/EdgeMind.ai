@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-11-04T19:26:38.887405+00:00",
+  "machine_fingerprint": "96d61092e385d1254bc44f6d7d0f5b3bc1037e143728ab0cbcd4d98b51fc60b1",
+  "model_fingerprint": "45826b1aacc9c0135c42c2ad130bb6018da3bcaefbac53fb0d382579657fc3fe",
+  "model_id": "openvino-llama3.2-1b-instruct-int4",
+  "prompt_profile": "edgemind-stage9-cold-request-v1",
+  "max_new_tokens": 32,
+  "runs_per_device": 1,
+  "warmups_per_device": 0,
+  "measurement_scope": "cold-adapter-total-includes-model-load",
+  "devices": {
+    "CPU": {
+      "status": "ok",
+      "count": 1,
+      "median_adapter_total_ms": 11254.54,
+      "median_generation_ms": 7506.37,
+      "median_model_load_ms": 3747.98,
+      "samples": [
+        {
+          "model_load_ms": 3747.98,
+          "generation_ms": 7506.37,
+          "adapter_total_ms": 11254.54,
+          "output_characters": 172
+        }
+      ]
+    },
+    "GPU": {
+      "status": "ok",
+      "count": 1,
+      "median_adapter_total_ms": 51976.56,
+      "median_generation_ms": 890.92,
+      "median_model_load_ms": 51085.52,
+      "samples": [
+        {
+          "model_load_ms": 51085.52,
+          "generation_ms": 890.92,
+          "adapter_total_ms": 51976.56,
+          "output_characters": 168
+        }
+      ]
+    }
+  }
+}

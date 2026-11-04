@@ -19,7 +19,7 @@ async function checkServer() {
     $('serverStatus').textContent = 'Local server connected';
     if (!serverConfig.real_local_enabled) {
       const option = $('executionMode').querySelector('[value=local_qwen]');
-      option.textContent = 'Real local Qwen (enable on server)';
+      option.textContent = 'Real local OpenVINO (enable on server)';
     }
   } catch (err) { $('serverStatus').textContent = 'Server unavailable'; }
 }
@@ -28,7 +28,7 @@ function syncMode() {
   $('modeBadge').textContent = isReal ? 'REAL LOCAL' : 'MOCK MODE';
   $('modeBadge').classList.toggle('real', isReal);
   $('formNote').textContent = isReal
-    ? 'Real local Qwen uses your configured OpenVINO model, only on this machine. Generated code will not be executed.'
+    ? 'The selected local OpenVINO model runs only on this machine. Generated code will not be executed.'
     : 'Mock mode only simulates AI generation, routing estimates and cloud eligibility. No real model is called.';
   if (isReal) {
     $('privacyMode').value = 'local_only';
@@ -41,7 +41,7 @@ function requestBody() {
   const documentText = $('documentText').value.trim();
   return {
     query: $('query').value.trim(),
-    execution_mode: $('executionMode').value,
+    execution_mode: $('executionMode').value === 'mock' ? 'mock' : $('localModel').value,
     task_type: $('taskType').value,
     privacy_mode: $('privacyMode').value,
     network: $('network').value,

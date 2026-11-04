@@ -6,4 +6,5 @@ __pycache__/
 .env
 models/
 benchmarks_local.json
+benchmarks_llama.json
 metrics_*.json

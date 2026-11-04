@@ -5,6 +5,7 @@ Generated code is never executed; no cloud calls or filesystem mutation.
 """
 from ..state import EdgeState
 from ..adapters.openvino_qwen import generate_local, generate_local_profiled, LocalModelError
+from ..local_models import REAL_MODES, for_mode, LLAMA
 
 _SUPPORTED_OPERATIONS = frozenset({'generate_text', 'generate_code', 'classify_input'})
 
@@ -23,10 +24,10 @@ def run_tools(state: EdgeState) -> dict:
             'tool_result': {'status': 'not_run', 'content': '', 'error': decision['reason'], 'error_code': 'NO_ELIGIBLE_MODEL'},
             'trace': [f'TOOLS: skipped {op}; no permissible model'],
         }
-    if state.get('execution_mode', 'mock') == 'local_qwen':
+    if state.get('execution_mode', 'mock') in REAL_MODES:
         # Explicitly allowlist a local text/code model. Never route an unknown,
         # cloud or mock selection into this real adapter.
-        if (decision.get('model_id') != 'openvino-qwen2.5-1.5b-instruct-int4'
+        if (decision.get('model_id') != for_mode(state['execution_mode']).model_id
                 or decision.get('provider') != 'local'
                 or decision.get('device') not in ('GPU', 'CPU')
                 or op not in ('generate_text', 'generate_code')):
@@ -42,6 +43,8 @@ def run_tools(state: EdgeState) -> dict:
                 operation=op, model_path=state['local_model_path'],
                 device=decision['device'], max_new_tokens=state['max_new_tokens'],
             )
+            if state['execution_mode'] == LLAMA.mode:
+                kwargs['model_id'] = LLAMA.model_id
             if state.get('profile_local', False):
                 content, performance = generate_local_profiled(**kwargs)
             else:

@@ -15,6 +15,7 @@ import os
 from pathlib import Path
 import platform
 import statistics
+from ..local_models import QWEN, for_id
 
 from ..adapters.openvino_qwen import (
     generate_local_profiled, runtime_hardware_profile, LocalModelError,
@@ -73,12 +74,14 @@ def _median(samples, field):
 
 
 def run_benchmarks(*, model_path: str, devices=('GPU', 'CPU'), runs=2, warmups=0,
-                   max_new_tokens=64, runner=None, hardware=None, now=None) -> dict:
+                   max_new_tokens=64, runner=None, hardware=None, now=None,
+                   model_id=MODEL_ID) -> dict:
     """Perform real profiling, or use an injected runner in deterministic tests.
 
     Failed device runs never become eligible routing observations. Reports
     contain timings and hashes only, not prompts, answers or model paths.
     """
+    model = for_id(model_id)
     if type(runs) is not int or not 1 <= runs <= 20:
         raise ValueError('runs must be an integer in 1..20')
     if type(warmups) is not int or not 0 <= warmups <= 5:
@@ -100,7 +103,7 @@ def run_benchmarks(*, model_path: str, devices=('GPU', 'CPU'), runs=2, warmups=0
         'created_utc': date.astimezone(timezone.utc).isoformat(),
         'machine_fingerprint': machine_fingerprint(),
         'model_fingerprint': model_fingerprint(model_path),
-        'model_id': MODEL_ID,
+        'model_id': model_id,
         'prompt_profile': PROMPT_PROFILE,
         'max_new_tokens': max_new_tokens,
         'runs_per_device': runs,
@@ -112,16 +115,17 @@ def run_benchmarks(*, model_path: str, devices=('GPU', 'CPU'), runs=2, warmups=0
         if not runtime['devices'].get(device, False):
             report['devices'][device] = {'status': 'unavailable'}
             continue
-        if runtime['available_memory_mb'] < MIN_AVAILABLE_MEMORY_MB:
+        if runtime['available_memory_mb'] < model.required_memory_mb:
             report['devices'][device] = {'status': 'insufficient_ram'}
             continue
         observations = []
         try:
             for attempt in range(warmups + runs):
                 # Each call creates a fresh OpenVINO pipeline by design.
+                identity = {'model_id': model_id} if model_id != QWEN.model_id else {}
                 _result, performance = runner(
                     query=PROMPT, evidence=[], operation='generate_text',
-                    model_path=model_path, device=device, max_new_tokens=max_new_tokens)
+                    model_path=model_path, device=device, max_new_tokens=max_new_tokens, **identity)
                 if not isinstance(_result, str) or not _result.strip() or not isinstance(performance, dict):
                     raise ValueError('Adapter returned invalid benchmark result')
                 sample = {key: performance.get(key) for key in
@@ -164,12 +168,13 @@ def save_report(report: dict, output_path: str) -> None:
 
 def eligible_observations(*, benchmark_file: str, model_path: str,
                           max_new_tokens: int, max_age_hours: int = 168,
-                          now=None) -> tuple[dict[str, float], str]:
+                          now=None, model_id=MODEL_ID) -> tuple[dict[str, float], str]:
     """Fail closed on missing, old, malformed or mismatched measurements.
 
     Valid readings are returned per device, never inferred for an unmeasured
     device. The caller must still apply hardware/privacy/capability filters.
     """
+    for_id(model_id)
     if type(max_age_hours) is not int or not 1 <= max_age_hours <= 24 * 365:
         raise ValueError('max_age_hours must be in 1..8760')
     try:
@@ -178,7 +183,7 @@ def eligible_observations(*, benchmark_file: str, model_path: str,
         return {}, 'benchmark file missing or unreadable; run benchmark_devices.py first'
     if not isinstance(obj, dict) or obj.get('schema_version') != SCHEMA_VERSION:
         return {}, 'unknown benchmark schema'
-    if (obj.get('model_id') != MODEL_ID or
+    if (obj.get('model_id') != model_id or
         obj.get('prompt_profile') != PROMPT_PROFILE or
         obj.get('measurement_scope') != 'cold-adapter-total-includes-model-load' or
         obj.get('model_fingerprint') != model_fingerprint(model_path) or

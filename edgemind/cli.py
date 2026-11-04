@@ -3,6 +3,7 @@ import argparse
 import json
 from .service import run_task
 from .contracts import mock_hardware_profile, mock_model_registry
+from .local_models import LLAMA, QWEN
 
 SAMPLE_DOCUMENTS = [
     {'source_id': 'sample/privacy', 'text': 'Private documents must remain on the local device.'},
@@ -45,11 +46,11 @@ def main():
     parser.add_argument('--gpu-latency-ms', type=int, help='Override MOCK GPU latency for experiments')
     parser.add_argument('--real-local', action='store_true',
                         help='Opt in to REAL LOCAL OpenVINO Qwen inference (no cloud calls)')
-    parser.add_argument('--model-path', default='models/qwen-1.5b',
-                        help='Existing local OpenVINO Qwen model directory')
+    parser.add_argument('--model', choices=['llama', 'qwen'], default='llama')
+    parser.add_argument('--model-path', help='Existing local OpenVINO model directory')
     parser.add_argument('--local-device', choices=['GPU', 'CPU', 'auto'], default='GPU',
                         help='Actual OpenVINO device, or auto from matching local benchmarks')
-    parser.add_argument('--benchmarks', default='benchmarks_local.json',
+    parser.add_argument('--benchmarks',
                         help='Local benchmark file for --local-device auto')
     parser.add_argument('--benchmark-max-age-hours', type=int, default=168,
                         help='Reject older benchmark readings (default 7 days)')
@@ -61,6 +62,9 @@ def main():
                         help='Optionally write safe numeric performance fields to a JSON file (no prompt/answer)')
     parser.add_argument('--json', action='store_true', help='Print complete state in JSON')
     args = parser.parse_args()
+    model = LLAMA if args.model == 'llama' else QWEN
+    args.model_path = args.model_path or model.directory
+    args.benchmarks = args.benchmarks or model.benchmark_file
     query = args.query if args.query is not None else input('EdgeMind > ').strip()
     if not 1 <= args.max_new_tokens <= 512:
         parser.error('--max-new-tokens must be between 1 and 512')
@@ -117,7 +121,7 @@ def main():
             hardware['devices'][device] = False
     result = run_task(
         query=query,
-        execution_mode='local_qwen' if args.real_local else 'mock',
+        execution_mode=model.mode if args.real_local else 'mock',
         local_model_path=args.model_path if args.real_local else None,
         local_device=args.local_device,
         max_new_tokens=args.max_new_tokens,
@@ -153,7 +157,7 @@ def main():
     if args.json:
         print(json.dumps(result, indent=2))
         return
-    print('\n===== EDGEMIND / ' + ('REAL LOCAL QWEN' if args.real_local else 'MOCK DEMO') + ' =====')
+    print('\n===== EDGEMIND / ' + (model.label if args.real_local else 'MOCK DEMO') + ' =====')
     for entry in result['trace']:
         print('  ' + entry)
     print('\nStatus:', result['status'])

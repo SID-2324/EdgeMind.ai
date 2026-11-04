@@ -1,4 +1,8 @@
-# EdgeMind Web Integration Contract (Stage 10)
+# EdgeMind Web Integration Contract (Stages 10–11)
+
+- **Local models:** `local_llama` selects Meta Llama 3.2 1B INT4; legacy `local_qwen` selects Qwen 2.5 1.5B. Both use the same allowlisted OpenVINO adapter and graph. Browser model selection defaults to Llama; execution remains mock until opted in.
+- **Model paths:** Qwen retains `EDGEMIND_MODEL_PATH` / `EDGEMIND_BENCHMARK_FILE`; Llama uses `EDGEMIND_LLAMA_MODEL_PATH` / `EDGEMIND_LLAMA_BENCHMARK_FILE`. Separate identities, fingerprints and token limits prevent benchmark reuse across models. Shared real-mode lock covers both models.
+- **Attribution:** Built with Llama; bundled LICENSE-Llama-3.2.txt, NOTICE and acceptable-use policy accompany Llama materials. Fixed read-only `/licenses/llama` and `/licenses/llama-use-policy` endpoints expose only these documents.
 
 - **Source of truth:** Existing Stage 9 `edgemind.service.run_task` callable. The web adapter does not modify the orchestration graph, routing policy, or tool execution adapters.
 - **HTTP adapter:** `edgemind.api.app` exposes read-only health/config information and a validated `POST /api/tasks` operation; `/` and `/assets/*` serve local frontend files.

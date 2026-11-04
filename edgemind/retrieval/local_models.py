@@ -4,6 +4,13 @@ FASTEMBED models are downloaded on their first use (internet needed once), then
 cached by FastEmbed locally. No OpenVINO/Qwen or cloud LLM calls are made here.
 """
 from functools import lru_cache
+import os
+
+
+def _load_options():
+    # Explicit offline admission for local tests and disconnected deployments.
+    # FastEmbed otherwise checks/downloads model weights on first construction.
+    return {'local_files_only': os.getenv('EDGEMIND_RETRIEVAL_LOCAL_ONLY') == '1'}
 
 EMBEDDING_MODEL = 'BAAI/bge-small-en-v1.5'
 RERANK_MODEL = 'Xenova/ms-marco-MiniLM-L-6-v2'
@@ -17,7 +24,7 @@ def get_embedder():
         raise RuntimeError(
             'Hybrid RAG needs fastembed. Run: python -m pip install -r requirements-rag.txt'
         ) from e
-    return TextEmbedding(model_name=EMBEDDING_MODEL)
+    return TextEmbedding(model_name=EMBEDDING_MODEL, **_load_options())
 
 
 @lru_cache(maxsize=1)
@@ -28,4 +35,4 @@ def get_reranker():
         raise RuntimeError(
             'Cross-encoder reranking needs fastembed. Install requirements-rag.txt'
         ) from e
-    return TextCrossEncoder(model_name=RERANK_MODEL)
+    return TextCrossEncoder(model_name=RERANK_MODEL, **_load_options())

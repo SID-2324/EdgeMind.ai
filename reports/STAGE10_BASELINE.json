@@ -1,0 +1,1604 @@
+{
+  "generated_at": "2026-11-05T00:02:37.959409+05:30",
+  "selected_groups": [
+    "api",
+    "benchmark",
+    "browser",
+    "hardware",
+    "integration",
+    "regression",
+    "retrieval",
+    "smoke",
+    "unit"
+  ],
+  "tests_executed": 223,
+  "passed": 223,
+  "failed": 0,
+  "errors": 0,
+  "skipped": 0,
+  "blocked": 0,
+  "stage10_fully_verified": true,
+  "stage11_ready": true,
+  "cloud_inference": "NOT IMPLEMENTED",
+  "outcomes": [
+    {
+      "id": "tests.test_numpy_regression.TestNumpyCosine.test_cosine_accepts_numpy_arrays",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_numpy_regression.TestNumpyCosine.test_rejects_empty_numpy_arrays",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_router.TestModelRouter.test_classification_can_use_local_npu",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_router.TestModelRouter.test_cloud_complex_with_permission",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_router.TestModelRouter.test_code_task_never_uses_classifier",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_router.TestModelRouter.test_complex_private_defers",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_router.TestModelRouter.test_invalid_policy_is_rejected",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_router.TestModelRouter.test_missing_capability_is_not_assumed",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_router.TestModelRouter.test_no_local_classification_for_complex_task",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_router.TestModelRouter.test_no_model_available_defers",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_router.TestModelRouter.test_offline_never_uses_cloud",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_router.TestModelRouter.test_private_never_falls_back_to_cloud",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_router.TestModelRouter.test_private_stays_local",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_router.TestModelRouter.test_unsupported_task_is_rejected",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage3_hardware.TestHardwareRouting.test_cloud_complex_task_does_not_need_local_gpu",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage3_hardware.TestHardwareRouting.test_cloud_is_allowed_when_no_local_memory_and_authorized",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage3_hardware.TestHardwareRouting.test_cloud_never_allowed_for_private_task_when_low_memory",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage3_hardware.TestHardwareRouting.test_gpu_selected_when_available",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage3_hardware.TestHardwareRouting.test_gpu_unavailable_falls_back_to_cpu",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage3_hardware.TestHardwareRouting.test_invalid_hardware_profiles_are_rejected",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage3_hardware.TestHardwareRouting.test_missing_local_memory_budget_is_not_assumed_zero",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage3_hardware.TestHardwareRouting.test_no_cloud_while_offline_even_when_local_does_not_fit",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage3_hardware.TestHardwareRouting.test_npu_disabled_defers_private_classification",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage3_hardware.TestHardwareRouting.test_ram_shortage_falls_back_to_smaller_cpu_model",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage3_hardware.TestHardwareRouting.test_too_little_ram_defers_private_task",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage4_optimization.TestOptimizationRouter.test_bad_constraints_are_rejected",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.001
+    },
+    {
+      "id": "tests.test_stage4_optimization.TestOptimizationRouter.test_balanced_default_preserves_previous_gpu_selection",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage4_optimization.TestOptimizationRouter.test_balanced_preserves_local_preference_in_sample",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage4_optimization.TestOptimizationRouter.test_budget_cannot_force_cloud_for_complex_task",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage4_optimization.TestOptimizationRouter.test_cost_optimization_selects_cheapest_eligible_model",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage4_optimization.TestOptimizationRouter.test_explainability_includes_estimates_and_rejections",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage4_optimization.TestOptimizationRouter.test_fastest_chooses_gpu_when_healthy",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage4_optimization.TestOptimizationRouter.test_gpu_slowdown_makes_cpu_fastest",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage4_optimization.TestOptimizationRouter.test_invalid_strategy_is_rejected",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage4_optimization.TestOptimizationRouter.test_latency_limit_may_defer",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage4_optimization.TestOptimizationRouter.test_min_quality_allows_cloud_when_permitted",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage4_optimization.TestOptimizationRouter.test_min_quality_can_defer_private_request",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage4_optimization.TestOptimizationRouter.test_missing_benchmark_is_rejected",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage4_optimization.TestOptimizationRouter.test_nan_metric_is_rejected",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage4_optimization.TestOptimizationRouter.test_npu_classifier_selected_even_when_text_models_exist",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage4_optimization.TestOptimizationRouter.test_quality_can_select_cloud_only_when_allowed",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage4_optimization.TestOptimizationRouter.test_quality_does_not_override_offline",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage4_optimization.TestOptimizationRouter.test_quality_does_not_override_private_data",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage4_optimization.TestOptimizationRouter.test_simulated_memory_rules_still_apply",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage4_optimization.TestOptimizationRouter.test_zero_cost_budget_keeps_free_local_models",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage5_rag.TestStage5Retrieval.test_bm25_ranks_relevant_document_first",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage5_rag.TestStage5Retrieval.test_chunk_documents_preserves_unique_identifiers",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage5_rag.TestStage5Retrieval.test_document_shorter_than_chunk_stays_single",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage5_rag.TestStage5Retrieval.test_empty_documents",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage5_rag.TestStage5Retrieval.test_no_matching_passages",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage5_rag.TestStage5Retrieval.test_overlapping_passages_can_be_searched",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage5_rag.TestStage5Retrieval.test_reject_invalid_chunk_sizes",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage5_rag.TestStage5Retrieval.test_reject_invalid_documents",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage5_rag.TestStage5Retrieval.test_retrieve_no_documents",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage5_rag.TestStage5Retrieval.test_retrieve_returns_source_tracking",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage5_rag.TestStage5Retrieval.test_stable_sorting_for_ties",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage5_rag.TestStage5Retrieval.test_tokenize_filters_common_stopwords",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage5_rag.TestStage5Retrieval.test_top_k_applies",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage5b_hybrid.TestStage5B.test_cosine_invalid_vectors",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage5b_hybrid.TestStage5B.test_cosine_same_and_orthogonal",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage5b_hybrid.TestStage5B.test_hybrid_empty_documents_no_model_required",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage5b_hybrid.TestStage5B.test_hybrid_keeps_source_ids",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage5b_hybrid.TestStage5B.test_invalid_hybrid_settings",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage5b_hybrid.TestStage5B.test_reject_invalid_reranker",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage5b_hybrid.TestStage5B.test_reranker_changes_order",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage5b_hybrid.TestStage5B.test_rrf_fuses_overlapping_rankings",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage5b_hybrid.TestStage5B.test_rrf_rejects_duplicate_source_ids",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage5b_hybrid.TestStage5B.test_semantic_finds_paraphrase_that_bm25_misses",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage6a_planner.TestPlanner.test_classification_task",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage6a_planner.TestPlanner.test_code_task",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage6a_planner.TestPlanner.test_complexity_does_not_invent_steps",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage6a_planner.TestPlanner.test_document_task_has_retrieval_first",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage6a_planner.TestPlanner.test_duplicate_step_id_rejected",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage6a_planner.TestPlanner.test_empty_task_rejected",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage6a_planner.TestPlanner.test_forward_dependency_rejected",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage6a_planner.TestPlanner.test_invalid_operation_rejected",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage6a_planner.TestPlanner.test_oversized_task_rejected",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage6a_planner.TestPlanner.test_plan_writes_both_legacy_and_structured_fields",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage6a_planner.TestPlanner.test_text_without_documents",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage6a_planner.TestPlanner.test_unknown_dependency_rejected",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage6a_planner.TestPlanner.test_unknown_task_type_rejected",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage6a_planner.TestPlanner.test_verification_required",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage6a_planner.TestPlanner.test_wrong_document_schema",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage6b_execution.Stage6BPureTests.test_blocked_model_still_reaches_verification",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage6b_execution.Stage6BPureTests.test_document_retrieval_must_precede_generation",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage6b_execution.Stage6BPureTests.test_missing_dependencies_rejected",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage6b_execution.Stage6BPureTests.test_plain_code_task_skips_retrieval",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage6b_execution.Stage6BPureTests.test_retry_cannot_occur_without_permission",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage6b_execution.Stage6BPureTests.test_retry_keeps_retrieval_and_reexecutes_primary",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage6b_execution.Stage6BPureTests.test_unknown_result_id_rejected",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage6b_execution.Stage6BPureTests.test_wrong_planned_action_rejected",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage6c_safety.VerificationRecoveryTests.test_fake_success_without_mock_marker_fails",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage6c_safety.VerificationRecoveryTests.test_mismatched_model_rejected",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage6c_safety.VerificationRecoveryTests.test_missing_prior_record_detected",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage6c_safety.VerificationRecoveryTests.test_permanent_error_does_not_retry",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage6c_safety.VerificationRecoveryTests.test_privacy_block_never_retries",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage6c_safety.VerificationRecoveryTests.test_transient_failure_retries_once",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage6c_safety.VerificationRecoveryTests.test_unknown_failure_code_does_not_retry",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage6c_safety.VerificationRecoveryTests.test_valid_mock_output_passes_structural_checks",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage8a_local_adapter.LocalAdapterTests.test_build_prompt_preserves_reference_source",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage8a_local_adapter.LocalAdapterTests.test_empty_real_output_rejected",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.032
+    },
+    {
+      "id": "tests.test_stage8a_local_adapter.LocalAdapterTests.test_mock_still_requires_mock_provenance",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.015
+    },
+    {
+      "id": "tests.test_stage8a_local_adapter.LocalAdapterTests.test_private_complex_task_cannot_bypass_router",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.011
+    },
+    {
+      "id": "tests.test_stage8a_local_adapter.LocalAdapterTests.test_real_code_generation_is_text_only",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.01
+    },
+    {
+      "id": "tests.test_stage8a_local_adapter.LocalAdapterTests.test_real_load_failure_not_retried",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.009
+    },
+    {
+      "id": "tests.test_stage8a_local_adapter.LocalAdapterTests.test_real_mode_never_runs_on_missing_gpu",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.009
+    },
+    {
+      "id": "tests.test_stage8a_local_adapter.LocalAdapterTests.test_real_mode_refuses_fake_hardware",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage8a_local_adapter.LocalAdapterTests.test_real_mode_requires_model_path",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage8a_local_adapter.LocalAdapterTests.test_real_result_structural_verification",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.009
+    },
+    {
+      "id": "tests.test_stage8b_observability.ObservabilityTests.test_adapter_measures_cpu_memory_and_never_captures_prompt",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.003
+    },
+    {
+      "id": "tests.test_stage8b_observability.ObservabilityTests.test_failed_generation_does_not_claim_success_metrics",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.01
+    },
+    {
+      "id": "tests.test_stage8b_observability.ObservabilityTests.test_metrics_file_excludes_query_and_answer",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.004
+    },
+    {
+      "id": "tests.test_stage8b_observability.ObservabilityTests.test_mock_mode_rejects_profiling",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage8b_observability.ObservabilityTests.test_profile_type_must_be_boolean",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_stage8b_observability.ObservabilityTests.test_profiled_adapter_rejects_npu",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.001
+    },
+    {
+      "id": "tests.test_stage8b_observability.ObservabilityTests.test_unprofiled_mock_is_unchanged",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.01
+    },
+    {
+      "id": "tests.test_stage8b_observability.ObservabilityTests.test_unprofiled_real_path_preserves_stage8a_adapter",
+      "group": "unit",
+      "status": "PASS",
+      "seconds": 0.009
+    },
+    {
+      "id": "tests.test_audit_regressions.RetrievalRegressions.test_empty_hybrid_rejects_invalid_candidate_k",
+      "group": "regression",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_audit_regressions.RetrievalRegressions.test_empty_hybrid_rejects_invalid_similarity",
+      "group": "regression",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_audit_regressions.RetrievalRegressions.test_empty_hybrid_rejects_invalid_top_k",
+      "group": "regression",
+      "status": "PASS",
+      "seconds": 0.0
+    },
+    {
+      "id": "tests.test_audit_regressions.WorkflowRegressions.test_persistent_timeout_exhausts_once_without_retrieval_repeat",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.013
+    },
+    {
+      "id": "tests.test_audit_regressions.WorkflowRegressions.test_privacy_matrix_never_selects_cloud",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.114
+    },
+    {
+      "id": "tests.test_stage3_workflow.TestStage3Workflow.test_entire_workflow_low_ram_private_defers",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.011
+    },
+    {
+      "id": "tests.test_stage3_workflow.TestStage3Workflow.test_entire_workflow_with_no_gpu_chooses_cpu",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.009
+    },
+    {
+      "id": "tests.test_stage4_workflow.TestStage4Workflow.test_gpu_slowdown_falls_back_in_entire_workflow",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.01
+    },
+    {
+      "id": "tests.test_stage4_workflow.TestStage4Workflow.test_private_quality_threshold_blocks_cloud",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.009
+    },
+    {
+      "id": "tests.test_stage4_workflow.TestStage4Workflow.test_quality_route_reaches_mock_coordinator",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.009
+    },
+    {
+      "id": "tests.test_stage5_workflow.TestStage5Workflow.test_retrieval_passages_reach_coordinator",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.01
+    },
+    {
+      "id": "tests.test_stage5_workflow.TestStage5Workflow.test_router_still_enforces_privacy",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.01
+    },
+    {
+      "id": "tests.test_stage6a_workflow.TestStage6AWorkflow.test_code_task_produces_structured_plan",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.009
+    },
+    {
+      "id": "tests.test_stage6a_workflow.TestStage6AWorkflow.test_documents_produce_retrieval_step",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.01
+    },
+    {
+      "id": "tests.test_stage6a_workflow.TestStage6AWorkflow.test_private_complex_task_still_defers",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.009
+    },
+    {
+      "id": "tests.test_stage6b_workflow.Stage6BGraphTests.test_code_generation_mock_respects_plan",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.009
+    },
+    {
+      "id": "tests.test_stage6b_workflow.Stage6BGraphTests.test_deferred_still_runs_verifier_once",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.009
+    },
+    {
+      "id": "tests.test_stage6b_workflow.Stage6BGraphTests.test_document_analysis_executes_retrieval_first",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.009
+    },
+    {
+      "id": "tests.test_stage6b_workflow.Stage6BGraphTests.test_plain_text_skips_rag",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.008
+    },
+    {
+      "id": "tests.test_stage6b_workflow.Stage6BGraphTests.test_transient_failure_retries_plan_step",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.014
+    },
+    {
+      "id": "tests.test_stage6c_workflow.Stage6CWorkflowTests.test_blocked_no_cloud_fallback",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.009
+    },
+    {
+      "id": "tests.test_stage6c_workflow.Stage6CWorkflowTests.test_malformed_output_deferred_without_retry",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.009
+    },
+    {
+      "id": "tests.test_stage6c_workflow.Stage6CWorkflowTests.test_normal_mock_passes_with_checks",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.021
+    },
+    {
+      "id": "tests.test_stage6c_workflow.Stage6CWorkflowTests.test_permanent_failure_does_not_retry",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.018
+    },
+    {
+      "id": "tests.test_stage6c_workflow.Stage6CWorkflowTests.test_retry_retains_history",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.017
+    },
+    {
+      "id": "tests.test_stage7_handoff.Layer2HandoffTests.test_classification_has_compatible_npu_mock",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.009
+    },
+    {
+      "id": "tests.test_stage7_handoff.Layer2HandoffTests.test_cloud_permitted_can_route_when_no_local_hardware",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.008
+    },
+    {
+      "id": "tests.test_stage7_handoff.Layer2HandoffTests.test_code_task_uses_coding_capable_model",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.009
+    },
+    {
+      "id": "tests.test_stage7_handoff.Layer2HandoffTests.test_documents_are_retrieved_before_generation",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.01
+    },
+    {
+      "id": "tests.test_stage7_handoff.Layer2HandoffTests.test_invalid_result_never_retries",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.01
+    },
+    {
+      "id": "tests.test_stage7_handoff.Layer2HandoffTests.test_local_only_never_selects_cloud",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.011
+    },
+    {
+      "id": "tests.test_stage7_handoff.Layer2HandoffTests.test_offline_does_not_select_cloud",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.009
+    },
+    {
+      "id": "tests.test_stage7_handoff.Layer2HandoffTests.test_output_can_be_serialized_for_later_fastapi_handoff",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.009
+    },
+    {
+      "id": "tests.test_stage7_handoff.Layer2HandoffTests.test_permanent_failure_never_retries",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.011
+    },
+    {
+      "id": "tests.test_stage7_handoff.Layer2HandoffTests.test_separate_requests_do_not_share_state",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.02
+    },
+    {
+      "id": "tests.test_stage7_handoff.Layer2HandoffTests.test_text_goes_through_plan_and_mock_verification",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.009
+    },
+    {
+      "id": "tests.test_stage7_handoff.Layer2HandoffTests.test_transient_failure_retries_once_not_retrieval",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.013
+    },
+    {
+      "id": "tests.test_stage7_handoff.Layer2HandoffTests.test_unsupported_task_is_rejected",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.007
+    },
+    {
+      "id": "tests.test_stage8b_observability.ObservabilityTests.test_blocked_real_task_has_workflow_time_only",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.011
+    },
+    {
+      "id": "tests.test_stage8b_observability.ObservabilityTests.test_profiled_workflow_returns_observed_numbers",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.01
+    },
+    {
+      "id": "tests.test_workflow.TestWorkflow.test_classification_routes_to_mock_npu",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.009
+    },
+    {
+      "id": "tests.test_workflow.TestWorkflow.test_complex_cloud_allowed_uses_mock_cloud",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.009
+    },
+    {
+      "id": "tests.test_workflow.TestWorkflow.test_complex_private_task_is_deferred",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.009
+    },
+    {
+      "id": "tests.test_workflow.TestWorkflow.test_recovery_retries_once",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.014
+    },
+    {
+      "id": "tests.test_workflow.TestWorkflow.test_simple_mock_flow",
+      "group": "integration",
+      "status": "PASS",
+      "seconds": 0.009
+    },
+    {
+      "id": "tests.test_audit_regressions.ApiRegressions.test_code_and_document_smoke",
+      "group": "api",
+      "status": "PASS",
+      "seconds": 0.039
+    },
+    {
+      "id": "tests.test_audit_regressions.ApiRegressions.test_concurrent_requests_have_isolated_outputs",
+      "group": "api",
+      "status": "PASS",
+      "seconds": 0.104
+    },
+    {
+      "id": "tests.test_audit_regressions.ApiRegressions.test_invalid_requests_never_execute",
+      "group": "api",
+      "status": "PASS",
+      "seconds": 0.012
+    },
+    {
+      "id": "tests.test_audit_regressions.ApiRegressions.test_malformed_json",
+      "group": "api",
+      "status": "PASS",
+      "seconds": 0.003
+    },
+    {
+      "id": "tests.test_audit_regressions.ApiRegressions.test_returned_adapter_error_does_not_expose_paths",
+      "group": "api",
+      "status": "PASS",
+      "seconds": 0.016
+    },
+    {
+      "id": "tests.test_audit_regressions.ApiRegressions.test_simultaneous_real_requests_reject_busy_and_keep_mock_available",
+      "group": "api",
+      "status": "PASS",
+      "seconds": 0.012
+    },
+    {
+      "id": "tests.test_stage10_web_api.Stage10WebApiTests.test_assets_served",
+      "group": "api",
+      "status": "PASS",
+      "seconds": 0.064
+    },
+    {
+      "id": "tests.test_stage10_web_api.Stage10WebApiTests.test_document_retrieval_settings_forwarded",
+      "group": "api",
+      "status": "PASS",
+      "seconds": 0.004
+    },
+    {
+      "id": "tests.test_stage10_web_api.Stage10WebApiTests.test_health_no_secret_paths_or_model_loading",
+      "group": "api",
+      "status": "PASS",
+      "seconds": 0.005
+    },
+    {
+      "id": "tests.test_stage10_web_api.Stage10WebApiTests.test_home_served",
+      "group": "api",
+      "status": "PASS",
+      "seconds": 0.006
+    },
+    {
+      "id": "tests.test_stage10_web_api.Stage10WebApiTests.test_mock_default_forwards_into_stable_service",
+      "group": "api",
+      "status": "PASS",
+      "seconds": 0.005
+    },
+    {
+      "id": "tests.test_stage10_web_api.Stage10WebApiTests.test_real_busy_rejected",
+      "group": "api",
+      "status": "PASS",
+      "seconds": 0.005
+    },
+    {
+      "id": "tests.test_stage10_web_api.Stage10WebApiTests.test_real_disabled_returns_403_without_execution",
+      "group": "api",
+      "status": "PASS",
+      "seconds": 0.004
+    },
+    {
+      "id": "tests.test_stage10_web_api.Stage10WebApiTests.test_real_enabled_uses_server_config_not_caller_path",
+      "group": "api",
+      "status": "PASS",
+      "seconds": 0.006
+    },
+    {
+      "id": "tests.test_stage10_web_api.Stage10WebApiTests.test_real_missing_model_directory_refused",
+      "group": "api",
+      "status": "PASS",
+      "seconds": 0.004
+    },
+    {
+      "id": "tests.test_stage10_web_api.Stage10WebApiTests.test_real_mock_graph_wiring_blocked",
+      "group": "api",
+      "status": "PASS",
+      "seconds": 0.014
+    },
+    {
+      "id": "tests.test_stage10_web_api.Stage10WebApiTests.test_real_mock_graph_wiring_text",
+      "group": "api",
+      "status": "PASS",
+      "seconds": 0.012
+    },
+    {
+      "id": "tests.test_stage10_web_api.Stage10WebApiTests.test_real_result_never_mislabelled_from_status",
+      "group": "api",
+      "status": "PASS",
+      "seconds": 0.006
+    },
+    {
+      "id": "tests.test_stage10_web_api.Stage10WebApiTests.test_reject_duplicate_sources",
+      "group": "api",
+      "status": "PASS",
+      "seconds": 0.003
+    },
+    {
+      "id": "tests.test_stage10_web_api.Stage10WebApiTests.test_reject_invalid_combinations",
+      "group": "api",
+      "status": "PASS",
+      "seconds": 0.018
+    },
+    {
+      "id": "tests.test_stage10_web_api.Stage10WebApiTests.test_reject_unsafe_source_id",
+      "group": "api",
+      "status": "PASS",
+      "seconds": 0.003
+    },
+    {
+      "id": "tests.test_stage10_web_api.Stage10WebApiTests.test_runtime_error_does_not_expose_local_file_path",
+      "group": "api",
+      "status": "PASS",
+      "seconds": 0.004
+    },
+    {
+      "id": "tests.test_stage10_web_api.Stage10WebApiTests.test_separate_requests_get_separate_service_calls",
+      "group": "api",
+      "status": "PASS",
+      "seconds": 0.007
+    },
+    {
+      "id": "tests.test_browser_ui.BrowserTests.test_actual_hybrid_and_reranking_in_browser",
+      "group": "browser",
+      "status": "PASS",
+      "seconds": 2.494,
+      "evidence": {
+        "transport": "real loopback HTTP",
+        "browser": "156.0.8078.4",
+        "status": "SIMULATED",
+        "is_real_inference": false,
+        "device": "GPU",
+        "performance": {},
+        "rag_diagnostics": {
+          "method": "hybrid",
+          "input_documents": 1,
+          "indexed_passages": 1,
+          "retrieved_passages": 1,
+          "embedding_model": "BAAI/bge-small-en-v1.5",
+          "reranker_requested": true,
+          "bm25_hits": 1,
+          "semantic_hits": 1,
+          "fused_candidates": 1,
+          "reranked": true,
+          "semantic_model_used": true,
+          "top_semantic_similarity": 0.7295
+        }
+      }
+    },
+    {
+      "id": "tests.test_browser_ui.BrowserTests.test_bm25_document_retrieval",
+      "group": "browser",
+      "status": "PASS",
+      "seconds": 0.394,
+      "evidence": {
+        "transport": "real loopback HTTP",
+        "browser": "156.0.8078.4",
+        "status": "SIMULATED",
+        "is_real_inference": false,
+        "device": "GPU",
+        "performance": {},
+        "rag_diagnostics": {
+          "method": "bm25",
+          "input_documents": 1,
+          "indexed_passages": 1,
+          "retrieved_passages": 1,
+          "scores": [
+            0.575364
+          ]
+        }
+      }
+    },
+    {
+      "id": "tests.test_browser_ui.BrowserTests.test_invalid_input_and_api_error_display",
+      "group": "browser",
+      "status": "PASS",
+      "seconds": 0.402,
+      "evidence": {
+        "transport": "real loopback HTTP",
+        "browser": "156.0.8078.4",
+        "status": "SIMULATED",
+        "is_real_inference": false,
+        "device": "GPU",
+        "performance": {},
+        "rag_diagnostics": {}
+      }
+    },
+    {
+      "id": "tests.test_browser_ui.BrowserTests.test_mock_code_and_classification_selection",
+      "group": "browser",
+      "status": "PASS",
+      "seconds": 0.269,
+      "evidence": {
+        "transport": "real loopback HTTP",
+        "browser": "156.0.8078.4",
+        "status": "SIMULATED",
+        "is_real_inference": false,
+        "device": "NPU",
+        "performance": {},
+        "rag_diagnostics": {}
+      }
+    },
+    {
+      "id": "tests.test_browser_ui.BrowserTests.test_mock_text_plan_trace_copy_and_safe_rendering",
+      "group": "browser",
+      "status": "PASS",
+      "seconds": 0.38,
+      "evidence": {
+        "transport": "real loopback HTTP",
+        "browser": "156.0.8078.4",
+        "status": "SIMULATED",
+        "is_real_inference": false,
+        "device": "GPU",
+        "performance": {},
+        "rag_diagnostics": {}
+      }
+    },
+    {
+      "id": "tests.test_browser_ui.BrowserTests.test_privacy_policy_and_real_mode_controls",
+      "group": "browser",
+      "status": "PASS",
+      "seconds": 0.287,
+      "evidence": {
+        "transport": "real loopback HTTP",
+        "browser": "156.0.8078.4",
+        "status": "SIMULATED",
+        "is_real_inference": false,
+        "device": "CLOUD",
+        "performance": {},
+        "rag_diagnostics": {}
+      }
+    },
+    {
+      "id": "tests.test_browser_ui.BrowserTests.test_real_cpu_text",
+      "group": "browser",
+      "status": "PASS",
+      "seconds": 6.738,
+      "evidence": {
+        "transport": "real loopback HTTP",
+        "browser": "156.0.8078.4",
+        "status": "COMPLETED",
+        "is_real_inference": true,
+        "device": "CPU",
+        "performance": {
+          "measurement_type": "observed",
+          "model_device": "CPU",
+          "model_load_ms": 2026.25,
+          "generation_ms": 2985.47,
+          "adapter_total_ms": 5011.82,
+          "process_rss_before_mb": 400.2,
+          "process_rss_after_mb": 2258.44,
+          "process_rss_delta_mb": 1858.25,
+          "output_characters": 34,
+          "memory_note": "RSS is process RAM before/after, NOT peak RAM or GPU memory.",
+          "latency_note": "Cold/load cost may vary; GPU execution is asynchronous internally.",
+          "workflow_total_ms": 5312.49,
+          "workflow_note": "Whole LangGraph workflow including planning, retrieval, routing, model load, generation, and verification as applicable."
+        },
+        "rag_diagnostics": {}
+      }
+    },
+    {
+      "id": "tests.test_browser_ui.BrowserTests.test_real_gpu_code",
+      "group": "browser",
+      "status": "PASS",
+      "seconds": 7.168,
+      "evidence": {
+        "transport": "real loopback HTTP",
+        "browser": "156.0.8078.4",
+        "status": "COMPLETED",
+        "is_real_inference": true,
+        "device": "GPU",
+        "performance": {
+          "measurement_type": "observed",
+          "model_device": "GPU",
+          "model_load_ms": 5934.41,
+          "generation_ms": 362.53,
+          "adapter_total_ms": 6297.03,
+          "process_rss_before_mb": 435.08,
+          "process_rss_after_mb": 2339.03,
+          "process_rss_delta_mb": 1903.95,
+          "output_characters": 19,
+          "memory_note": "RSS is process RAM before/after, NOT peak RAM or GPU memory.",
+          "latency_note": "Cold/load cost may vary; GPU execution is asynchronous internally.",
+          "workflow_total_ms": 6383.74,
+          "workflow_note": "Whole LangGraph workflow including planning, retrieval, routing, model load, generation, and verification as applicable."
+        },
+        "rag_diagnostics": {}
+      }
+    },
+    {
+      "id": "tests.test_live_hardware.LocalInferenceTests.test_cpu_code",
+      "group": "hardware",
+      "status": "PASS",
+      "seconds": 8.085,
+      "observed_metrics": {
+        "measurement_type": "observed",
+        "model_device": "CPU",
+        "model_load_ms": 2082.69,
+        "generation_ms": 2909.13,
+        "adapter_total_ms": 4991.93,
+        "process_rss_before_mb": 126.62,
+        "process_rss_after_mb": 2008.71,
+        "process_rss_delta_mb": 1882.08,
+        "output_characters": 19,
+        "memory_note": "RSS is process RAM before/after, NOT peak RAM or GPU memory.",
+        "latency_note": "Cold/load cost may vary; GPU execution is asynchronous internally.",
+        "workflow_total_ms": 5200.1,
+        "workflow_note": "Whole LangGraph workflow including planning, retrieval, routing, model load, generation, and verification as applicable."
+      }
+    },
+    {
+      "id": "tests.test_live_hardware.LocalInferenceTests.test_cpu_text",
+      "group": "hardware",
+      "status": "PASS",
+      "seconds": 7.33,
+      "observed_metrics": {
+        "measurement_type": "observed",
+        "model_device": "CPU",
+        "model_load_ms": 1933.83,
+        "generation_ms": 2886.8,
+        "adapter_total_ms": 4820.73,
+        "process_rss_before_mb": 126.58,
+        "process_rss_after_mb": 2004.37,
+        "process_rss_delta_mb": 1877.79,
+        "output_characters": 34,
+        "memory_note": "RSS is process RAM before/after, NOT peak RAM or GPU memory.",
+        "latency_note": "Cold/load cost may vary; GPU execution is asynchronous internally.",
+        "workflow_total_ms": 5054.26,
+        "workflow_note": "Whole LangGraph workflow including planning, retrieval, routing, model load, generation, and verification as applicable."
+      }
+    },
+    {
+      "id": "tests.test_live_hardware.LocalInferenceTests.test_gpu_code",
+      "group": "hardware",
+      "status": "PASS",
+      "seconds": 7.89,
+      "observed_metrics": {
+        "measurement_type": "observed",
+        "model_device": "GPU",
+        "model_load_ms": 4971.08,
+        "generation_ms": 364.55,
+        "adapter_total_ms": 5335.72,
+        "process_rss_before_mb": 127.31,
+        "process_rss_after_mb": 2283.66,
+        "process_rss_delta_mb": 2156.34,
+        "output_characters": 19,
+        "memory_note": "RSS is process RAM before/after, NOT peak RAM or GPU memory.",
+        "latency_note": "Cold/load cost may vary; GPU execution is asynchronous internally.",
+        "workflow_total_ms": 5499.6,
+        "workflow_note": "Whole LangGraph workflow including planning, retrieval, routing, model load, generation, and verification as applicable."
+      }
+    },
+    {
+      "id": "tests.test_live_hardware.LocalInferenceTests.test_gpu_text",
+      "group": "hardware",
+      "status": "PASS",
+      "seconds": 7.63,
+      "observed_metrics": {
+        "measurement_type": "observed",
+        "model_device": "GPU",
+        "model_load_ms": 4718.17,
+        "generation_ms": 323.51,
+        "adapter_total_ms": 5041.81,
+        "process_rss_before_mb": 126.5,
+        "process_rss_after_mb": 2250.89,
+        "process_rss_delta_mb": 2124.39,
+        "output_characters": 34,
+        "memory_note": "RSS is process RAM before/after, NOT peak RAM or GPU memory.",
+        "latency_note": "Cold/load cost may vary; GPU execution is asynchronous internally.",
+        "workflow_total_ms": 5182.13,
+        "workflow_note": "Whole LangGraph workflow including planning, retrieval, routing, model load, generation, and verification as applicable."
+      }
+    },
+    {
+      "id": "tests.test_live_retrieval.CachedRetrievalTests.test_actual_cross_encoder_scores",
+      "group": "retrieval",
+      "status": "PASS",
+      "seconds": 0.018,
+      "evidence": {
+        "model": "Xenova/ms-marco-MiniLM-L-6-v2",
+        "scores": [
+          8.089582443237305,
+          -11.127354621887207,
+          -11.154939651489258
+        ],
+        "local_files_only": true
+      }
+    },
+    {
+      "id": "tests.test_live_retrieval.CachedRetrievalTests.test_actual_embeddings_and_numpy_cosine",
+      "group": "retrieval",
+      "status": "PASS",
+      "seconds": 0.115,
+      "evidence": {
+        "model": "BAAI/bge-small-en-v1.5",
+        "dimension": 384,
+        "semantic_scores": [
+          0.808261422783362,
+          0.33563066042742784,
+          0.3110574387872746
+        ],
+        "source_ids": [
+          "capital",
+          "fruit",
+          "compute"
+        ],
+        "local_files_only": true
+      }
+    },
+    {
+      "id": "tests.test_live_retrieval.CachedRetrievalTests.test_actual_hybrid_retrieval",
+      "group": "retrieval",
+      "status": "PASS",
+      "seconds": 0.123,
+      "evidence": {
+        "bm25_hits": 1,
+        "semantic_hits": 3,
+        "fused_candidates": 3,
+        "reranked": false,
+        "semantic_model_used": true,
+        "top_semantic_similarity": 0.8083
+      }
+    },
+    {
+      "id": "tests.test_live_retrieval.CachedRetrievalTests.test_actual_hybrid_with_cross_encoder",
+      "group": "retrieval",
+      "status": "PASS",
+      "seconds": 0.24,
+      "evidence": {
+        "method": "hybrid",
+        "input_documents": 3,
+        "indexed_passages": 3,
+        "retrieved_passages": 1,
+        "embedding_model": "BAAI/bge-small-en-v1.5",
+        "reranker_requested": true,
+        "bm25_hits": 1,
+        "semantic_hits": 3,
+        "fused_candidates": 3,
+        "reranked": true,
+        "semantic_model_used": true,
+        "top_semantic_similarity": 0.8158
+      }
+    },
+    {
+      "id": "tests.test_stage9_benchmarks.Stage9BenchmarkTests.test_auto_missing_benchmark_defers_no_inference",
+      "group": "benchmark",
+      "status": "PASS",
+      "seconds": 0.025
+    },
+    {
+      "id": "tests.test_stage9_benchmarks.Stage9BenchmarkTests.test_auto_selects_cpu_when_gpu_unavailable",
+      "group": "benchmark",
+      "status": "PASS",
+      "seconds": 0.314
+    },
+    {
+      "id": "tests.test_stage9_benchmarks.Stage9BenchmarkTests.test_auto_selects_gpu_from_measured_latencies",
+      "group": "benchmark",
+      "status": "PASS",
+      "seconds": 0.059
+    },
+    {
+      "id": "tests.test_stage9_benchmarks.Stage9BenchmarkTests.test_benchmark_constraints_do_not_override_hardware",
+      "group": "benchmark",
+      "status": "PASS",
+      "seconds": 0.041
+    },
+    {
+      "id": "tests.test_stage9_benchmarks.Stage9BenchmarkTests.test_changed_model_configuration_refused",
+      "group": "benchmark",
+      "status": "PASS",
+      "seconds": 0.035
+    },
+    {
+      "id": "tests.test_stage9_benchmarks.Stage9BenchmarkTests.test_changed_model_path_refused",
+      "group": "benchmark",
+      "status": "PASS",
+      "seconds": 0.012
+    },
+    {
+      "id": "tests.test_stage9_benchmarks.Stage9BenchmarkTests.test_changed_token_limit_refused",
+      "group": "benchmark",
+      "status": "PASS",
+      "seconds": 0.015
+    },
+    {
+      "id": "tests.test_stage9_benchmarks.Stage9BenchmarkTests.test_failing_gpu_does_not_block_cpu",
+      "group": "benchmark",
+      "status": "PASS",
+      "seconds": 0.009
+    },
+    {
+      "id": "tests.test_stage9_benchmarks.Stage9BenchmarkTests.test_gpu_unavailable_only_cpu_is_recorded",
+      "group": "benchmark",
+      "status": "PASS",
+      "seconds": 0.007
+    },
+    {
+      "id": "tests.test_stage9_benchmarks.Stage9BenchmarkTests.test_insufficient_ram_means_no_runs",
+      "group": "benchmark",
+      "status": "PASS",
+      "seconds": 0.006
+    },
+    {
+      "id": "tests.test_stage9_benchmarks.Stage9BenchmarkTests.test_invalid_report_fails_closed",
+      "group": "benchmark",
+      "status": "PASS",
+      "seconds": 0.002
+    },
+    {
+      "id": "tests.test_stage9_benchmarks.Stage9BenchmarkTests.test_manual_device_keeps_existing_mode",
+      "group": "benchmark",
+      "status": "PASS",
+      "seconds": 0.013
+    },
+    {
+      "id": "tests.test_stage9_benchmarks.Stage9BenchmarkTests.test_missing_report_fails_closed",
+      "group": "benchmark",
+      "status": "PASS",
+      "seconds": 0.001
+    },
+    {
+      "id": "tests.test_stage9_benchmarks.Stage9BenchmarkTests.test_observed_device_mediana",
+      "group": "benchmark",
+      "status": "PASS",
+      "seconds": 0.012
+    },
+    {
+      "id": "tests.test_stage9_benchmarks.Stage9BenchmarkTests.test_other_machine_refused",
+      "group": "benchmark",
+      "status": "PASS",
+      "seconds": 0.01
+    },
+    {
+      "id": "tests.test_stage9_benchmarks.Stage9BenchmarkTests.test_privacy_still_local_only",
+      "group": "benchmark",
+      "status": "PASS",
+      "seconds": 0.021
+    },
+    {
+      "id": "tests.test_stage9_benchmarks.Stage9BenchmarkTests.test_stale_readings_refused",
+      "group": "benchmark",
+      "status": "PASS",
+      "seconds": 0.009
+    },
+    {
+      "id": "tests.test_stage9_benchmarks.Stage9BenchmarkTests.test_tampered_median_not_accepted",
+      "group": "benchmark",
+      "status": "PASS",
+      "seconds": 0.013
+    },
+    {
+      "id": "tests.test_stage9_benchmarks.Stage9BenchmarkTests.test_task_capability_does_not_get_overridden",
+      "group": "benchmark",
+      "status": "PASS",
+      "seconds": 0.021
+    },
+    {
+      "id": "tests.test_cli_smoke.CliSmokeTests.test_mock_classification_end_to_end",
+      "group": "smoke",
+      "status": "PASS",
+      "seconds": 1.36
+    },
+    {
+      "id": "tests.test_cli_smoke.CliSmokeTests.test_mock_document_code_end_to_end",
+      "group": "smoke",
+      "status": "PASS",
+      "seconds": 1.339
+    },
+    {
+      "id": "tests.test_cli_smoke.CliSmokeTests.test_private_no_hardware_end_to_end",
+      "group": "smoke",
+      "status": "PASS",
+      "seconds": 1.352
+    }
+  ],
+  "limitations": [
+    "Real cloud inference is NOT IMPLEMENTED; cloud routing is simulated.",
+    "Verifier checks structure, not factual correctness.",
+    "Passing tests do not establish public deployment readiness."
+  ],
+  "dependency_versions": {
+    "playwright": "1.64.1",
+    "fastembed": "0.9.1",
+    "onnxruntime": "1.31.1",
+    "openvino": "2026.4.1",
+    "openvino-genai": "2026.4.1.0",
+    "fastapi": "0.162.0",
+    "langgraph": "1.2.19"
+  }
+}

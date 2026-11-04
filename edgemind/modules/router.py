@@ -7,6 +7,7 @@ Order is critical: policy -> capability -> hardware -> constraints -> ranking.
 Never relax a hard policy just to improve a score.
 """
 import math
+from ..local_models import REAL_MODES
 
 from ..contracts import (
     HardwareProfile, ModelCapability, ModelDecision, RoutingPreferences,
@@ -192,7 +193,7 @@ def route_model(state: EdgeState) -> dict:
         hardware=state.get('hardware_profile'),
         preferences=state.get('routing_preferences'),
     )
-    if state.get('execution_mode') == 'local_qwen':
+    if state.get('execution_mode') in REAL_MODES:
         if state.get('local_device_preference') == 'auto':
             if result['outcome'] == 'selected':
                 # The Router keeps its historic 'estimates' contract for existing

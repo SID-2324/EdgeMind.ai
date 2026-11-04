@@ -1,0 +1,192 @@
+[
+  {
+    "id": "tests.test_live_hardware.LocalInferenceTests.test_cpu_code",
+    "metrics": {
+      "measurement_type": "observed",
+      "model_id": "openvino-qwen2.5-1.5b-instruct-int4",
+      "model_device": "CPU",
+      "model_load_ms": 2092.51,
+      "generation_ms": 2988.92,
+      "adapter_total_ms": 5081.54,
+      "process_rss_before_mb": 126.84,
+      "process_rss_after_mb": 2008.17,
+      "process_rss_delta_mb": 1881.33,
+      "output_characters": 19,
+      "memory_note": "RSS is process RAM before/after, NOT peak RAM or GPU memory.",
+      "latency_note": "Cold/load cost may vary; GPU execution is asynchronous internally.",
+      "workflow_total_ms": 5310.0,
+      "workflow_note": "Whole LangGraph workflow including planning, retrieval, routing, model load, generation, and verification as applicable."
+    }
+  },
+  {
+    "id": "tests.test_live_hardware.LocalInferenceTests.test_cpu_text",
+    "metrics": {
+      "measurement_type": "observed",
+      "model_id": "openvino-qwen2.5-1.5b-instruct-int4",
+      "model_device": "CPU",
+      "model_load_ms": 1982.07,
+      "generation_ms": 2628.19,
+      "adapter_total_ms": 4610.37,
+      "process_rss_before_mb": 126.48,
+      "process_rss_after_mb": 2006.83,
+      "process_rss_delta_mb": 1880.35,
+      "output_characters": 34,
+      "memory_note": "RSS is process RAM before/after, NOT peak RAM or GPU memory.",
+      "latency_note": "Cold/load cost may vary; GPU execution is asynchronous internally.",
+      "workflow_total_ms": 4817.47,
+      "workflow_note": "Whole LangGraph workflow including planning, retrieval, routing, model load, generation, and verification as applicable."
+    }
+  },
+  {
+    "id": "tests.test_live_hardware.LocalInferenceTests.test_gpu_code",
+    "metrics": {
+      "measurement_type": "observed",
+      "model_id": "openvino-qwen2.5-1.5b-instruct-int4",
+      "model_device": "GPU",
+      "model_load_ms": 5245.73,
+      "generation_ms": 366.32,
+      "adapter_total_ms": 5612.16,
+      "process_rss_before_mb": 127.0,
+      "process_rss_after_mb": 2043.98,
+      "process_rss_delta_mb": 1916.99,
+      "output_characters": 19,
+      "memory_note": "RSS is process RAM before/after, NOT peak RAM or GPU memory.",
+      "latency_note": "Cold/load cost may vary; GPU execution is asynchronous internally.",
+      "workflow_total_ms": 5748.86,
+      "workflow_note": "Whole LangGraph workflow including planning, retrieval, routing, model load, generation, and verification as applicable."
+    }
+  },
+  {
+    "id": "tests.test_live_hardware.LocalInferenceTests.test_gpu_text",
+    "metrics": {
+      "measurement_type": "observed",
+      "model_id": "openvino-qwen2.5-1.5b-instruct-int4",
+      "model_device": "GPU",
+      "model_load_ms": 4871.59,
+      "generation_ms": 319.12,
+      "adapter_total_ms": 5190.81,
+      "process_rss_before_mb": 127.05,
+      "process_rss_after_mb": 2250.57,
+      "process_rss_delta_mb": 2123.52,
+      "output_characters": 34,
+      "memory_note": "RSS is process RAM before/after, NOT peak RAM or GPU memory.",
+      "latency_note": "Cold/load cost may vary; GPU execution is asynchronous internally.",
+      "workflow_total_ms": 5327.37,
+      "workflow_note": "Whole LangGraph workflow including planning, retrieval, routing, model load, generation, and verification as applicable."
+    }
+  },
+  {
+    "id": "tests.test_live_llama.LlamaInferenceTests.test_cpu_code",
+    "metrics": {
+      "measurement_type": "observed",
+      "model_id": "openvino-llama3.2-1b-instruct-int4",
+      "model_device": "CPU",
+      "model_load_ms": 1557.9,
+      "generation_ms": 2269.41,
+      "adapter_total_ms": 3827.45,
+      "process_rss_before_mb": 127.25,
+      "process_rss_after_mb": 1904.62,
+      "process_rss_delta_mb": 1777.37,
+      "output_characters": 62,
+      "memory_note": "RSS is process RAM before/after, NOT peak RAM or GPU memory.",
+      "latency_note": "Cold/load cost may vary; GPU execution is asynchronous internally.",
+      "workflow_total_ms": 4021.4,
+      "workflow_note": "Whole LangGraph workflow including planning, retrieval, routing, model load, generation, and verification as applicable."
+    }
+  },
+  {
+    "id": "tests.test_live_llama.LlamaInferenceTests.test_cpu_text",
+    "metrics": {
+      "measurement_type": "observed",
+      "model_id": "openvino-llama3.2-1b-instruct-int4",
+      "model_device": "CPU",
+      "model_load_ms": 1420.62,
+      "generation_ms": 1435.41,
+      "adapter_total_ms": 2856.19,
+      "process_rss_before_mb": 127.28,
+      "process_rss_after_mb": 1904.14,
+      "process_rss_delta_mb": 1776.86,
+      "output_characters": 5,
+      "memory_note": "RSS is process RAM before/after, NOT peak RAM or GPU memory.",
+      "latency_note": "Cold/load cost may vary; GPU execution is asynchronous internally.",
+      "workflow_total_ms": 3054.36,
+      "workflow_note": "Whole LangGraph workflow including planning, retrieval, routing, model load, generation, and verification as applicable."
+    }
+  },
+  {
+    "id": "tests.test_live_llama.LlamaInferenceTests.test_gpu_code",
+    "metrics": {
+      "measurement_type": "observed",
+      "model_id": "openvino-llama3.2-1b-instruct-int4",
+      "model_device": "GPU",
+      "model_load_ms": 5002.24,
+      "generation_ms": 511.59,
+      "adapter_total_ms": 5513.97,
+      "process_rss_before_mb": 126.51,
+      "process_rss_after_mb": 2115.36,
+      "process_rss_delta_mb": 1988.85,
+      "output_characters": 49,
+      "memory_note": "RSS is process RAM before/after, NOT peak RAM or GPU memory.",
+      "latency_note": "Cold/load cost may vary; GPU execution is asynchronous internally.",
+      "workflow_total_ms": 6236.98,
+      "workflow_note": "Whole LangGraph workflow including planning, retrieval, routing, model load, generation, and verification as applicable."
+    }
+  },
+  {
+    "id": "tests.test_live_llama.LlamaInferenceTests.test_gpu_text",
+    "metrics": {
+      "measurement_type": "observed",
+      "model_id": "openvino-llama3.2-1b-instruct-int4",
+      "model_device": "GPU",
+      "model_load_ms": 4737.58,
+      "generation_ms": 201.99,
+      "adapter_total_ms": 4939.79,
+      "process_rss_before_mb": 126.66,
+      "process_rss_after_mb": 2232.25,
+      "process_rss_delta_mb": 2105.59,
+      "output_characters": 6,
+      "memory_note": "RSS is process RAM before/after, NOT peak RAM or GPU memory.",
+      "latency_note": "Cold/load cost may vary; GPU execution is asynchronous internally.",
+      "workflow_total_ms": 5469.81,
+      "workflow_note": "Whole LangGraph workflow including planning, retrieval, routing, model load, generation, and verification as applicable."
+    }
+  },
+  {
+    "id": "tests.test_live_llama.LlamaInferenceTests.test_llama_auto_from_real_benchmarks",
+    "metrics": {
+      "measurement_type": "observed",
+      "model_id": "openvino-llama3.2-1b-instruct-int4",
+      "model_device": "CPU",
+      "model_load_ms": 1461.06,
+      "generation_ms": 1618.54,
+      "adapter_total_ms": 3079.76,
+      "process_rss_before_mb": 127.2,
+      "process_rss_after_mb": 1904.11,
+      "process_rss_delta_mb": 1776.9,
+      "output_characters": 6,
+      "memory_note": "RSS is process RAM before/after, NOT peak RAM or GPU memory.",
+      "latency_note": "Cold/load cost may vary; GPU execution is asynchronous internally.",
+      "workflow_total_ms": 3281.55,
+      "workflow_note": "Whole LangGraph workflow including planning, retrieval, routing, model load, generation, and verification as applicable."
+    }
+  },
+  {
+    "id": "tests.test_live_llama.LlamaInferenceTests.test_llama_rag_summary_cpu",
+    "metrics": {
+      "measurement_type": "observed",
+      "model_id": "openvino-llama3.2-1b-instruct-int4",
+      "model_device": "CPU",
+      "model_load_ms": 1425.14,
+      "generation_ms": 2294.98,
+      "adapter_total_ms": 3720.32,
+      "process_rss_before_mb": 126.77,
+      "process_rss_after_mb": 1907.89,
+      "process_rss_delta_mb": 1781.12,
+      "output_characters": 159,
+      "memory_note": "RSS is process RAM before/after, NOT peak RAM or GPU memory.",
+      "latency_note": "Cold/load cost may vary; GPU execution is asynchronous internally.",
+      "workflow_total_ms": 3984.53,
+      "workflow_note": "Whole LangGraph workflow including planning, retrieval, routing, model load, generation, and verification as applicable."
+    }
+  }
+]

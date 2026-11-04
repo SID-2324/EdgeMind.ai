@@ -17,11 +17,19 @@ def retrieve(state: EdgeState, *, embedder=None, reranker=None) -> dict:
     overlap_words = settings.get('overlap_words', 20)
     mode = settings.get('mode', 'bm25')
     enable_reranker = settings.get('enable_reranker', False)
+    if type(top_k) is not int or top_k < 1:
+        raise ValueError('top_k must be positive')
     candidate_k = settings.get('candidate_k', max(10, top_k))
     if mode not in ('bm25', 'hybrid'):
         raise ValueError('RAG mode must be bm25 or hybrid')
     if enable_reranker and mode != 'hybrid':
         raise ValueError('Reranker is only supported in hybrid mode')
+    if mode == 'hybrid':
+        if type(candidate_k) is not int or candidate_k < top_k:
+            raise ValueError('candidate_k must be an integer >= top_k')
+        similarity = settings.get('min_semantic_similarity', 0.0)
+        if type(similarity) not in (int, float) or not -1.0 <= similarity <= 1.0:
+            raise ValueError('min_semantic_similarity must lie between -1 and 1')
     docs = state.get('documents', [])
     passages = chunk_documents(docs, chunk_words=chunk_words, overlap_words=overlap_words)
     if mode == 'bm25':

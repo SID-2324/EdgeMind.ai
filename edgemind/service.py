@@ -7,6 +7,7 @@ from .graph import make_graph
 from .adapters.openvino_qwen import runtime_hardware_profile
 from .state import EdgeState
 import time
+from .local_models import REAL_MODES, for_mode
 
 
 def run_task(
@@ -33,15 +34,18 @@ def run_task(
 ) -> EdgeState:
     if not isinstance(query, str) or not query.strip():
         raise ValueError('Query cannot be empty')
-    if execution_mode not in ('mock', 'local_qwen'):
-        raise ValueError('execution_mode must be mock or local_qwen')
+    if execution_mode != 'mock' and execution_mode not in REAL_MODES:
+        raise ValueError('execution_mode must be mock, local_qwen or local_llama')
     if type(max_new_tokens) is not int or not 1 <= max_new_tokens <= 512:
         raise ValueError('max_new_tokens must be between 1 and 512')
     if type(profile_local) is not bool:
         raise ValueError('profile_local must be a boolean')
-    if profile_local and execution_mode != 'local_qwen':
+    if profile_local and execution_mode not in REAL_MODES:
         raise ValueError('Performance profiling requires real local inference')
-    if execution_mode == 'local_qwen':
+    if execution_mode in REAL_MODES:
+        model = for_mode(execution_mode)
+        if privacy_mode != 'local_only':
+            raise ValueError('Real local execution requires local_only privacy')
         if local_device not in ('GPU', 'CPU', 'auto'):
             raise ValueError('OpenVINO Qwen generation supports GPU, CPU, or benchmark-aware auto selection')
         if not local_model_path:
@@ -56,33 +60,33 @@ def run_task(
             # Missing/stale data => no model selected, not a guessed GPU choice.
             from .benchmark.benchmarks import eligible_observations
             observed, diagnostic = eligible_observations(
-                benchmark_file=benchmark_file or 'benchmarks_local.json',
+                benchmark_file=benchmark_file or model.benchmark_file,
                 model_path=local_model_path, max_new_tokens=max_new_tokens,
-                max_age_hours=benchmark_max_age_hours)
+                max_age_hours=benchmark_max_age_hours, model_id=model.model_id)
             available_models = [{
-                'model_id': 'openvino-qwen2.5-1.5b-instruct-int4',
+                'model_id': model.model_id,
                 'provider': 'local', 'device': device,
                 'complexities': ['simple'], 'task_types': ['text', 'code'],
-                'available': True, 'required_memory_mb': 2300,
+                'available': True, 'required_memory_mb': model.required_memory_mb,
                 'estimated_latency_ms': max(1, round(latency)),
-                'estimated_cost_usd': 0.0, 'estimated_quality_score': 0.88,
+                'estimated_cost_usd': 0.0, 'estimated_quality_score': model.quality_estimate,
             } for device, latency in observed.items()]
         else:
             diagnostic = 'manual device: no benchmark-based routing'
             available_models = [{
-                'model_id': 'openvino-qwen2.5-1.5b-instruct-int4',
+                'model_id': model.model_id,
                 'provider': 'local', 'device': local_device,
                 'complexities': ['simple'], 'task_types': ['text', 'code'],
-                'available': True, 'required_memory_mb': 2300,
+                'available': True, 'required_memory_mb': model.required_memory_mb,
                 'estimated_latency_ms': 650, 'estimated_cost_usd': 0.0,
-                'estimated_quality_score': 0.88,
+                'estimated_quality_score': model.quality_estimate,
             }]
     initial: EdgeState = {
         'query': query,
         'execution_mode': execution_mode,
         'local_model_path': local_model_path,
         'local_device_preference': local_device,
-        'benchmark_diagnostics': diagnostic if execution_mode == 'local_qwen' else 'mock estimates only',
+        'benchmark_diagnostics': diagnostic if execution_mode in REAL_MODES else 'mock estimates only',
         'max_new_tokens': max_new_tokens,
         'profile_local': profile_local,
         'privacy_mode': privacy_mode,
